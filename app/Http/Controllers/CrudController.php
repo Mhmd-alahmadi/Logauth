@@ -7,6 +7,7 @@ use App\Modles\Offer;
 use http\Message;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use LaravelLocalization;
 
 
 class CrudController extends Controller
@@ -16,8 +17,9 @@ class CrudController extends Controller
      *
      * @return void
      */
-   public function getOffers(){
-   return Offer::select('id', 'name')->get( );
+   public function getAllOffers(){
+  $offers= Offer::select('name_'.LaravelLocalization::getCurrentLocale().' as name','price','details_'.LaravelLocalization::getCurrentLocale().' as details')->get();
+  return view('offer.all', compact('offers'));
    }
 
 //   public function store(){
@@ -31,9 +33,7 @@ class CrudController extends Controller
         return view('offer.create');
     }
 
-public function getAllOffers(){
-       Offer::select('id','name','price','details');
-}
+
     public function store (OfferRequest $request)
     {
 
@@ -44,15 +44,16 @@ public function getAllOffers(){
 //        {
 //            return redirect()->back()->withErrors($validator)->withInputs($request->all());
 //        }
+
        Offer::create([
-           'name' => $request->name,
+           'name_ar' => $request->name_ar,
+           'name_en' => $request->name_en,
            'price' => $request->price,
-           'details' => $request->details
+           'details_ar' => $request->details_ar,
+           'details_en' => $request->details_en,
+
        ]);
         return redirect()->back()->with(['succces'=>'تم اضافة العرض بنجاح']);}}
-
-
-
 
 //    protected function getRules(){
 //      return $rules=[

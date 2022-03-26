@@ -84,62 +84,30 @@
                 @endforeach
         </div>
     </nav>
-    <div class="content">
-        <div class="title m-b-md">
-            {{__('message.Add offers')}}
-        </div>
-        <div>
-            @if(Session::has('succces'))
-            <div class="alert alert-success" role="alert">
-                {{Session::get('succces')}}
-            </div>
-            @endif
-            <form method="post" action="{{route('offers.store')}}">
-                @csrf
-                <div class="form-group">
-                    <label for="exampleInputEmail1">اسم العرض بالعربي</label>
-                    <input type="textl" class="form-control" id="exampleInputEmail1" name="name_ar" aria-describedby="emailHelp">
-                    @error('name_ar')
-                    <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Offer Name in english</label>
-                    <input type="textl" class="form-control" id="exampleInputEmail1" name="name_en" aria-describedby="emailHelp">
-                    @error('name_en')
-                    <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Price</label>
-                    <input type="text" class="form-control form-control-lg" name="price" id="exampleInputPassword1">
-                    @error('price')
-                    <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">التفاصيل</label>
-                    <input type="text" class="form-control" name="details_ar" id="exampleInputPassword1">
-                    @error('details_ar')
-                    <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Details in english</label>
-                    <input type="text" class="form-control" name="details_en" id="exampleInputPassword1">
-                    @error('details_en')
-                    <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
-                    @enderror
-                </div>
-                <button type="submit" class="btn btn-primary">Save</button>
-            </form>
-        </div>
 
+    <table class="table">
+        <thead>
 
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Offer name</th>
+            <th scope="col">offer price</th>
+            <th scope="col">Offer details</th>
+        </tr>
 
-    </div>
+        </thead>
+        <tbody>
+        @foreach($offers as $offer)
+        <tr>
+            <th scope="row">{{$offer -> id}}</th>
+            <td>{{$offer -> name}}</td>
+            <td>{{$offer -> price}}</td>
+            <td>{{$offer -> details}}</td>
+        </tr>
+        @endforeach
 
-
+        </tbody>
+    </table>
 
     </body>
 </html>
