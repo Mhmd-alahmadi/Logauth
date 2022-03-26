@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+                                        <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -86,7 +86,7 @@
     </nav>
     <div class="content">
         <div class="title m-b-md">
-            Add offers
+            {{__('message.Add offers')}}
         </div>
         <div>
             @if(Session::has('succces'))

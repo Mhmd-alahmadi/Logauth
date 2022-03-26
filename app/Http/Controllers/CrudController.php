@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OfferRequest;
 use App\Modles\Offer;
 use http\Message;
 use Illuminate\Support\Facades\Validator;
@@ -30,39 +31,42 @@ class CrudController extends Controller
         return view('offer.create');
     }
 
-
-    public function store (Request $request)
+public function getAllOffers(){
+       Offer::select('id','name','price','details');
+}
+    public function store (OfferRequest $request)
     {
 
-        $rules = $this->getRules();
-        $message = $this->getMessages();
-        $validator = Validator::make($request->all(),$rules,$message);
-        if($validator->fails())
-        {
-            return redirect()->back()->withErrors($validator)->withInputs($request->all());
-        }
+//        $rules = $this->getRules();
+//        $message = $this->getMessages();
+//        $validator = Validator::make($request->all(),$rules,$message);
+//        if($validator->fails())
+//        {
+//            return redirect()->back()->withErrors($validator)->withInputs($request->all());
+//        }
        Offer::create([
            'name' => $request->name,
            'price' => $request->price,
            'details' => $request->details
        ]);
-        return redirect()->back()->with(['succces'=>'تم اضافة العرض بنجاح']);
+        return redirect()->back()->with(['succces'=>'تم اضافة العرض بنجاح']);}}
 
 
-    }
-    protected function getRules(){
-      return $rules=[
-          'name'=>'required||max:100|unique:offers,name',
-          'price'=>'required||numeric',
-          'details'=>'required|'
-      ];
-    }
-    protected function getMessages(){
-     return  $message = [
-         'name.required'=> __('message.offer name required'),
-         'name.unique'=>__('message.offer name unique'),
-         'price.numeric'=>'الاسم مطلوب في هذا الحقل'
-     ];
-    }
 
-}
+
+//    protected function getRules(){
+//      return $rules=[
+//          'name'=>'required||max:100|unique:offers,name',
+//          'price'=>'required||numeric',
+//          'details'=>'required|'
+//      ];
+//    }
+//    protected function getMessages(){
+//     return  $message = [
+//         'name.required'=> __('message.offer name required'),
+//         'name.unique'=>__('message.offer name unique'),
+//         'price.numeric'=>'الاسم مطلوب في هذا الحقل'
+//     ];
+//    }
+
+
