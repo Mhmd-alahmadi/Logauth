@@ -86,33 +86,26 @@
     </nav>
     <div class="content">
         <div class="title m-b-md">
-            {{__('message.Add offers')}}
+            {{__('message.Update Offer')}}
         </div>
         <div>
-            @if(Session::has('succces'))
+            @if(Session::has('succes'))
             <div class="alert alert-success" role="alert">
-                {{Session::get('succces')}}
+                {{Session::get('succes')}}
             </div>
             @endif
-            <form method="post" action="{{route('offers.store')}}" enctype="multipart/form-data">
+            <form method="post" action="{{route('offers.update',$offer -> id )}}">
                 @csrf
                 <div class="form-group">
-                    <label for="exampleInputEmail1">الملف</label>
-                    <input type="file" class="form-control" id="exampleInputEmail1" name="photo"  >
-                    @error('photo')
-                    <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
-                    @enderror
-                </div>
-                <div class="form-group">
                     <label for="exampleInputEmail1">اسم العرض بالعربي</label>
-                    <input type="textl" class="form-control" id="exampleInputEmail1" name="name_ar" aria-describedby="emailHelp">
+                    <input type="textl" class="form-control" id="exampleInputEmail1" name="name_ar" value="{{$offer ->name_ar }}" aria-describedby="emailHelp">
                     @error('name_ar')
                     <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Offer Name in english</label>
-                    <input type="textl" class="form-control" id="exampleInputEmail1" name="name_en" aria-describedby="emailHelp">
+                    <input type="textl" class="form-control" id="exampleInputEmail1" name="name_en"  value="{{$offer ->name_en }}" aria-describedby="emailHelp">
                     @error('name_en')
                     <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
                     @enderror
@@ -126,14 +119,14 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">التفاصيل</label>
-                    <input type="text" class="form-control" name="details_ar" id="exampleInputPassword1">
+                    <input type="text" class="form-control" name="details_ar" value="{{$offer ->details_ar }}" id="exampleInputPassword1">
                     @error('details_ar')
                     <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Details in english</label>
-                    <input type="text" class="form-control" name="details_en" id="exampleInputPassword1">
+                    <input type="text" class="form-control" name="details_en" value="{{$offer ->details_en }}" id="exampleInputPassword1">
                     @error('details_en')
                     <small id="emailHelp" class="form-text text-danger">{{$message}}</small>
                     @enderror

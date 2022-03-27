@@ -16,5 +16,6 @@ return [
     'offer name required' => 'الاسم مطلوب في هذا الحقل',
     'offer name unique' => 'الاسم يجب ان لا يتكرر',
     'Add offers' => 'اضافة عرض',
+    'Update Offer' => 'تعديل العروض'
 
 ];

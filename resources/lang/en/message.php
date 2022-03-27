@@ -16,4 +16,5 @@ return [
     'offer name required' => 'offer name required',
     'offer name unique' => 'offer name unique',
     'Add offers' => 'Add offers',
+    'Update Offer' => 'Update Offer'
 ];
